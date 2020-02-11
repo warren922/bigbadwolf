@@ -6,6 +6,7 @@
       <change afterPath="$PROJECT_DIR$/frontend/app/containers/JoinGamePage/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/app/containers/JoinGamePage/tests/index.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/frontend" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/containers/App/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/containers/App/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
@@ -64,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581401580031</updated>
-      <workItem from="1581401582243" duration="4198000" />
+      <workItem from="1581401582243" duration="4444000" />
     </task>
     <servers />
   </component>
