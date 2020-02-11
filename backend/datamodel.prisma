@@ -1,0 +1,6 @@
+type User {
+  id: ID! @id
+  num: Int! @unique
+  name: String
+  role: String
+}
