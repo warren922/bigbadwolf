@@ -12,11 +12,12 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import JoinGame from 'containers/JoinGamePage/Loadable';
+import HostGame from 'containers/HostGamePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-import GlobalStyle from '../../global-styles';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import GlobalStyle from '../../global-styles';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4466/bigbadwolf/dev',
@@ -28,6 +29,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/joinGame" component={JoinGame} />
+        <Route exact path="/hostGame" component={HostGame} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -13,6 +13,7 @@ export default function HomePage() {
   return (
     <h1>
       <FormattedMessage {...messages.header} />
+      <h3>Hello Theo</h3>
     </h1>
   );
 }
