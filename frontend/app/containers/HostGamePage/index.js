@@ -40,6 +40,7 @@ const UPSERT_USER = gql`
   }
 `;
 
+// Test Update with fixed paramaters
 const UPDATE_USER = gql`
   mutation{
     updateUser(
@@ -55,10 +56,10 @@ const UPDATE_USER = gql`
 `;
 
 const UPDATE_USER2 = gql`
-  mutation ($update: UserUpdateInput!, $where: UserWhereUniqueInput!){
+  mutation ($data: UserUpdateInput!, $where: UserWhereUniqueInput!){
     updateUser(
-      data: {role: $update}
-      where: {num: $where}
+      data: $data
+      where:$where
     )
     {
       id
@@ -69,12 +70,22 @@ const UPDATE_USER2 = gql`
   }
 `;
 
-var roles = ["狼人","女巫","村民","獵人","預言家"];
+var roles = ["狼人","狼人","村民","村民","女巫","獵人","預言家"];
+
+//
+// --------------------- Main Function ------------------------
+//
 
 export function HostGamePage({ onPlayerSelected }) {
   const [num, setNum] = useState(1);
   const [name, setName] = useState('');
   const [role, setRole] = useState('什麼都不是');
+
+  //
+  // Prisma Calls
+  //
+
+  const { loading, error, data } = useQuery(GET_PLAYERS);
   const [upsertUser, { data2 }] = useMutation(UPSERT_USER, {
     variables: {
       where: { num },
@@ -82,29 +93,33 @@ export function HostGamePage({ onPlayerSelected }) {
       update: { name }
     }
   });
-
   const [updateUser, { data3 }] = useMutation(UPDATE_USER);
   const [updateUser2, { data4 }] = useMutation(UPDATE_USER2, {
     variables: {
-      data: { role },
-      where: { num }
+      data: {role: role} ,
+      where: {num: num}
     }
   });
-
-  const { loading, error, data } = useQuery(GET_PLAYERS);
-  const status = 'Active';
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
-  var newRole = shuffle(roles);
+  // Shuffle the roles
+  let newRole = shuffle(roles);
 
   // Callback function for "Deal Role" button
   const dealRole = async () => {
-    setNum(2);
-    setRole("主持");
     //upsertUser();
     //updateUser();
+
+    setNum(1);
+    //setRole(newRole[0]);
+    setRole("主持1");
+    updateUser2();
+
+    setNum(2);
+    //setRole(newRole[1]);
+    setRole("主持2");
     updateUser2();
   };
 
@@ -122,11 +137,11 @@ export function HostGamePage({ onPlayerSelected }) {
       )) : "No Data"}..
       </ul>
       <ul name="newplayer">
-        {data2 ? data2.users.map(newplayer => (
+        {data4 ? data4.users.map(newplayer => (
           <li key={newplayer.num} value={newplayer.name}>
             {newplayer.num} {newplayer.name} {newplayer.role}
           </li>
-        )) : "No Data2"}..
+        )) : "No Data4"}..
       </ul>
       <ul name="role2">
         {listItem2}
